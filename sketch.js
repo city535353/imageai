@@ -48,7 +48,8 @@ function setup() {
 
   flippedVideo = ml5.flipImage(video)
   // Start classifying
-  classifyVideo();
+  //classifyVideo();
+  select("#buttonPredict").mousePressed(classifyVideo);
 }
 
 function draw() {
@@ -80,5 +81,5 @@ function gotResult(error, results) {
   // console.log(results[0]);
   label = results[0].label;
   // Classifiy again!
-  classifyVideo();
+  //classifyVideo();
 }
