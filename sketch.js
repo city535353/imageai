@@ -48,7 +48,7 @@ function setup() {
 
   flippedVideo = ml5.flipImage(video)
   // Start classifying
-  //classifyVideo();
+  showVideo();
   select("#buttonPredict").mousePressed(classifyVideo);
 }
 
@@ -64,10 +64,14 @@ function draw() {
   text(label, width / 2, height - 4);
 }
 
-// Get a prediction for the current video frame
 function classifyVideo() {
-  flippedVideo = ml5.flipImage(video)
+  flippedVideo = ml5.flipImage(video);
   classifier.classify(flippedVideo, gotResult);
+}
+
+// Get a prediction for the current video frame
+function showVideo() {
+  flippedVideo = ml5.flipImage(video);
 }
 
 // When we get a result
@@ -81,5 +85,5 @@ function gotResult(error, results) {
   // console.log(results[0]);
   label = results[0].label;
   // Classifiy again!
-  //classifyVideo();
+  showVideo();
 }
