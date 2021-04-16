@@ -25,6 +25,13 @@ function preload() {
   classifier = ml5.imageClassifier(imageModelURL + 'model.json');
 }
 
+
+ThunkableWebviewerExtension.receiveMessage(function(message) {
+   img = loadImage(message);
+   classifier.classify(img, gotResult); 
+});
+
+
 function setup() {
 	//###############
   var constraints = {
@@ -84,6 +91,7 @@ function gotResult(error, results) {
   // The results are in an array ordered by confidence.
   // console.log(results[0]);
   label = results[0].label;
+  ThunkableWebviewerExtension.postMessage(label);
   // Classifiy again!
   //showVideo();
 }
