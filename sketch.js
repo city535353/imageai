@@ -71,7 +71,7 @@ function classifyVideo() {
 
 // Get a prediction for the current video frame
 function showVideo() {
-  flippedVideo = ml5.flipImage(video);
+  flippedVideo = video.get(0,0,320,260);
 }
 
 // When we get a result
