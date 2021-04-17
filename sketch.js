@@ -27,9 +27,16 @@ function preload() {
 
 
 ThunkableWebviewerExtension.receiveMessage(function(message) {
-   flippedVideo = createImg(message);
+  loadImage(message, img => {
+    image(img, 20, 40, 100, 100);
+  },
+    (event) => {
+      fill("red")
+      text("Error: The image could not be loaded.", 20, 40);
+    }
+  );
    
-   classifier.classify(flippedVideo, gotResult); 
+   //classifier.classify(flippedVideo, gotResult); 
 });
 
 
