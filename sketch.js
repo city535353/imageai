@@ -27,7 +27,7 @@ function preload() {
 
 
 ThunkableWebviewerExtension.receiveMessage(function(message) {
-   flippedVideo = loadImage(message);
+   flippedVideo = createImg(message);
    
    classifier.classify(flippedVideo, gotResult); 
 });
