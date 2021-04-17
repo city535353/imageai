@@ -20,6 +20,10 @@ let flippedVideo;
 // To store the classification
 let label = "";
 
+let input;
+let img;
+
+
 // Load the model first
 function preload() {
   classifier = ml5.imageClassifier(imageModelURL + 'model.json');
@@ -58,13 +62,14 @@ function setup() {
   flippedVideo = ml5.flipImage(video)
   // Start classifying
   //showVideo();
-  select("#buttonPredict").mousePressed(classifyVideo);
+  //select("#buttonPredict").mousePressed(classifyVideo);
+  input = createFileInput(handleFile);
+  input.position(0, 0);
 }
 
 function draw() {
   background(0);
   // Draw the video
-  flippedVideo = loadImage("birch.png", imageLoaded)
   image(flippedVideo, 0, 0);
 
   // Draw the label
@@ -73,6 +78,17 @@ function draw() {
   textAlign(CENTER);
   text(label, width / 2, height - 50); //
 }
+
+function handleFile(file) {
+  print(file);
+  if (file.type === 'image') {
+    flippedVideo = createImg(file.data, '');
+    flippedVideo.hide();
+  } else {
+    flippedVideo = null;
+  }
+}
+
 
 function imageLoaded(){ //this function could be called whatever we want
 	  image(flippedVideo, 0, 0);
