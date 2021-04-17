@@ -28,9 +28,9 @@ function preload() {
 
 ThunkableWebviewerExtension.receiveMessage(function(message) {
    label = message;
-   img = loadImage(label);  
+   //img = loadImage(label);  
    //classifier.classify(flippedVideo, gotResult); 
-   ThunkableWebviewerExtension.postMessage(label);
+   //ThunkableWebviewerExtension.postMessage(label);
 });
 
 
@@ -64,6 +64,7 @@ function setup() {
 function draw() {
   background(0);
   // Draw the video
+  flippedVideo = loadImage("birch.png", imageLoaded)
   image(flippedVideo, 0, 0);
 
   // Draw the label
@@ -71,6 +72,10 @@ function draw() {
   textSize(14);
   textAlign(CENTER);
   text(label, width / 2, height - 50); //
+}
+
+function imageLoaded(){ //this function could be called whatever we want
+	  image(flippedVideo, 0, 0);
 }
 
 function classifyVideo() {
