@@ -48,7 +48,7 @@ function setup() {
   };
 	//###############
 	
-  createCanvas(1000, 1000);
+  createCanvas(800, 800);
   // Create the video
   video = createCapture(constraints);
   video.size(320, 320);
@@ -63,13 +63,13 @@ function setup() {
 function draw() {
   background(0);
   // Draw the video
-  image(img, 0, 0);
+  image(flippedVideo, 0, 0);
 
   // Draw the label
   fill(255);
   textSize(14);
   textAlign(CENTER);
-  text(label, width / 2, height - 4); //
+  text(label, width / 2, height - 50); //
 }
 
 function classifyVideo() {
