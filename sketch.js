@@ -28,6 +28,7 @@ function preload() {
 
 ThunkableWebviewerExtension.receiveMessage(function(message) {
    img = loadImage(message);
+   image(img, 0, 0);
    classifier.classify(img, gotResult); 
 });
 
