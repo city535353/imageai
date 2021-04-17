@@ -28,7 +28,7 @@ function preload() {
 
 ThunkableWebviewerExtension.receiveMessage(function(message) {
    label = message;
-   img = loadImage(message);  
+   //img = loadImage(message);  
    //classifier.classify(flippedVideo, gotResult); 
 });
 
@@ -48,7 +48,7 @@ function setup() {
   };
 	//###############
 	
-  createCanvas(500, 500);
+  createCanvas(800, 800);
   // Create the video
   video = createCapture(constraints);
   video.size(320, 320);
@@ -67,7 +67,7 @@ function draw() {
 
   // Draw the label
   fill(255);
-  textSize(24);
+  textSize(14);
   textAlign(CENTER);
   text(label); //, width / 2, height - 4
 }
