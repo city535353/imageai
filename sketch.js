@@ -55,18 +55,18 @@ function setup() {
 	
   //createCanvas(800, 800);
   // Create the video
-  video = createCapture(constraints);
-  video.size(320, 320);
-  video.hide();
+  //video = createCapture(constraints);
+  //video.size(320, 320);
+  //video.hide();
 
-  flippedVideo = ml5.flipImage(video)
+  //flippedVideo = ml5.flipImage(video)
   // Start classifying
   //showVideo();
   //select("#buttonPredict").mousePressed(classifyVideo);
   input = createFileInput(handleFile);
-  input.position(0, 0);
+  input.position(20, 20);
 }
-
+/*
 function draw() {
   background(0);
   // Draw the video
@@ -78,7 +78,7 @@ function draw() {
   textAlign(CENTER);
   text(label, width / 2, height - 50); //
 }
-
+*/
 function handleFile(file) {
   print(file);
   if (file.type === 'image') {
