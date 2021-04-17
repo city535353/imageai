@@ -53,7 +53,7 @@ function setup() {
   };
 	//###############
 	
-  createCanvas(800, 800);
+  //createCanvas(800, 800);
   // Create the video
   video = createCapture(constraints);
   video.size(320, 320);
@@ -84,6 +84,7 @@ function handleFile(file) {
   if (file.type === 'image') {
     flippedVideo = createImg(file.data, '');
     flippedVideo.hide();
+	classifier.classify(flippedVideo, gotResult);
   } else {
     flippedVideo = null;
   }
