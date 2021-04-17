@@ -55,22 +55,23 @@ function setup() {
 	
   createCanvas(800, 800);
   // Create the video
-  //video = createCapture(constraints);
-  //video.size(320, 320);
-  //video.hide();
+  video = createCapture(constraints);
+  video.size(320, 320);
+  video.hide();
 
-  //flippedVideo = ml5.flipImage(video)
+  flippedVideo = ml5.flipImage(video)
   // Start classifying
   //showVideo();
   //select("#buttonPredict").mousePressed(classifyVideo);
   input = createFileInput(handleFile);
-  input.position(20, 20);
+  input.position(0, 0);
 }
 
 function draw() {
   background(0);
   // Draw the video
-  image(flippedVideo, 0, 0);
+  //flippedVideo = loadImage("birch.png", imageLoaded)
+  image(img, 0, 0);
 
   // Draw the label
   fill(255);
@@ -82,11 +83,10 @@ function draw() {
 function handleFile(file) {
   print(file);
   if (file.type === 'image') {
-    flippedVideo = createImg(file.data, '');
-    flippedVideo.hide();
-	classifier.classify(flippedVideo, gotResult);
+    img = createImg(file.data, '');
+    img.hide();
   } else {
-    flippedVideo = null;
+    img = null;
   }
 }
 
