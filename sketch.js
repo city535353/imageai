@@ -12,7 +12,7 @@ This example uses p5 preload function to create the classifier
 // Classifier Variable
 let classifier;
 // Model URL
-let imageModelURL = 'https://city535353.github.io/imageai/';
+let imageModelURL = 'https://teachablemachine.withgoogle.com/models/bXy2kDNi/';
 
 // Video
 let video;
@@ -20,89 +20,39 @@ let flippedVideo;
 // To store the classification
 let label = "";
 
-let input;
-let img;
-
-
 // Load the model first
 function preload() {
   classifier = ml5.imageClassifier(imageModelURL + 'model.json');
 }
 
-
-ThunkableWebviewerExtension.receiveMessage(function(message) {
-   label = message;
-   //img = loadImage(label);  
-   //classifier.classify(flippedVideo, gotResult); 
-   //ThunkableWebviewerExtension.postMessage(label);
-});
-
-
 function setup() {
-	//###############
-  var constraints = {
-    audio: false,
-    video: {
-      facingMode: {
-        exact: "environment"
-      }
-    }    
-    //video: {
-      //facingMode: "user"
-    //} 
-  };
-	//###############
-	
-  createCanvas(800, 800);
+  createCanvas(320, 260);
   // Create the video
-  video = createCapture(constraints);
-  video.size(320, 320);
+  video = createCapture(VIDEO);
+  video.size(320, 240);
   video.hide();
 
   flippedVideo = ml5.flipImage(video)
   // Start classifying
-  //showVideo();
-  //select("#buttonPredict").mousePressed(classifyVideo);
-  input = createFileInput(handleFile);
-  input.position(0, 0);
+  classifyVideo();
 }
 
 function draw() {
   background(0);
   // Draw the video
-  //flippedVideo = loadImage("birch.png", imageLoaded)
-  image(img, 0, 0);
+  image(flippedVideo, 0, 0);
 
   // Draw the label
   fill(255);
-  textSize(14);
+  textSize(16);
   textAlign(CENTER);
-  text(label, width / 2, height - 50); //
-}
-
-function handleFile(file) {
-  print(file);
-  if (file.type === 'image') {
-    img = createImg(file.data, '');
-    img.hide();
-  } else {
-    img = null;
-  }
-}
-
-
-function imageLoaded(){ //this function could be called whatever we want
-	  image(flippedVideo, 0, 0);
-}
-
-function classifyVideo() {
-  flippedVideo = ml5.flipImage(video);
-  classifier.classify(flippedVideo, gotResult);
+  text(label, width / 2, height - 4);
 }
 
 // Get a prediction for the current video frame
-function showVideo() {
-  flippedVideo = video.get(0,0,320,320);
+function classifyVideo() {
+  flippedVideo = ml5.flipImage(video)
+  classifier.classify(flippedVideo, gotResult);
 }
 
 // When we get a result
@@ -115,7 +65,6 @@ function gotResult(error, results) {
   // The results are in an array ordered by confidence.
   // console.log(results[0]);
   label = results[0].label;
-  ThunkableWebviewerExtension.postMessage(label);
   // Classifiy again!
-  //showVideo();
+  classifyVideo();
 }
